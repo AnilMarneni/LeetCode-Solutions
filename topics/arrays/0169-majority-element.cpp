@@ -1,0 +1,36 @@
+/*
+Problem: Majority Element
+Link: https://leetcode.com/problems/majority-element/
+Difficulty: Easy
+
+Approach:
+- Use Boyer-Moore Voting Algorithm
+- Maintain a candidate and a count
+- If count becomes 0, pick new candidate
+- Increment if same, decrement if different
+
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+Tags: Array, Greedy, Voting Algorithm
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int candidate = 0, count = 0;
+
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+
+            count += (num == candidate) ? 1 : -1;
+        }
+
+        return candidate;
+    }
+};
